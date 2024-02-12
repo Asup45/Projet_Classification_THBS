@@ -1,0 +1,269 @@
+@font-face {
+    font-family: system-ui;
+    font-style: normal;
+    font-weight: 300;
+    src: local("Roboto Mono");
+}
+
+p-x {
+    font-family: 'Roboto Condensed';
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+p-x[c="red"]
+{
+    color: #FF1744;
+}
+
+p-x[c="green"]
+{
+    color: #00E676;
+}
+
+p-x[c="blue"]
+{
+    color: #2196F3;
+}
+
+p-x[c="indigo"]
+{
+    color: #3949AB;
+}
+
+p-g
+{
+    font-family: 'JetBrains Mono';
+    font-weight: 500;
+    color: #00E676;
+}
+
+p-r
+{
+    font-family: 'JetBrains Mono';
+    font-weight: 500;
+    color: #FF1744;
+}
+
+p-b
+{
+    font-family: 'JetBrains Mono';
+    font-weight: 500;
+    color: #2196F3;
+}
+
+u-b
+{
+    font-family: 'JetBrains Mono';
+    text-decoration: underline;
+    font-weight: 500;
+    color: #2196F3;
+}
+
+x-b
+{
+    color: #2196F3;
+}
+
+.ub /* underlined-bold */
+{
+    font-family: 'JetBrains Mono';
+    text-decoration: underline;
+    font-weight: 800;
+}
+
+
+.env /* environment */
+{
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 13px 15px 5px 15px;
+    margin: 0px 0px 20px 0px;
+}
+
+.env[t="cmd-desc"] /* environment @t:type */
+{
+    background-color: #101b24;
+}
+
+html
+{
+    font-family: 'Roboto';
+    background-color: #212121;
+}
+
+/* - MARKDOWN FORMAT ----------------------------------------------------- */
+h1
+{
+    font-family: 'JetBrains Mono';
+    color: #1DE9B6;
+    font-weight: 500;
+    font-size: 1.6em;
+    padding-top: 30px;
+    counter-reset: h2-counter;
+}
+
+h1::before
+{
+    content: "§ ";
+}
+
+h2
+{
+    font-family: 'JetBrains Mono';
+    color: #B2EBF2;
+    font-weight: 500;
+    font-size: 1.4em;
+    counter-increment: h2-counter;
+    counter-reset: h3-counter;
+}
+
+h2::before
+{
+    content: counter(h2-counter, upper-roman) ". ";
+}
+
+h3
+{
+    font-family: 'JetBrains Mono';
+    color: #FFAB91;
+    font-weight: 600;
+    font-size: 1.2em;
+    counter-increment: h3-counter;
+}
+
+h3::before
+{
+    content: "0"counter(h3-counter) ". ";
+}
+
+* {
+    color: #FAFAFA;
+}
+
+strong
+{
+    font-family: 'Roboto Condensed';
+    color: #F48FB1;
+}
+
+u
+{
+    text-decoration: none;
+    color: #F9FBE7;
+}
+
+pre, code
+{
+    font-family: 'Source Code Pro';
+    font-size: 13px;
+    font-weight: 600;
+}
+
+ul, ol
+{
+    margin: 0px;
+    padding: 0px 0px 0px 40px;
+}
+
+li
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+th
+{
+    color: #4DD0E1;
+}
+
+def-of
+{
+    font-family: 'Roboto Condensed';
+    color: #69F0AE;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+a:link
+{
+    color: #40C4FF;
+}
+
+h-t::before /* true hypothesis */
+{
+    font-family: 'Roboto Mono';
+    font-weight: 500;
+    color: #69F0AE;
+    content: '(V)';
+}
+
+h-f::before /* true hypothesis */
+{
+    font-family: 'Roboto Mono';
+    font-weight: 500;
+    color: #FF8A80;
+    content: '(F)';
+}
+
+/* - JUPYTER-NOTEBOOK FORMAT --------------------------------------------- */
+j-h2
+{
+    font-family: 'JetBrains Mono';
+    color: #B2EBF2;
+    font-weight: 500;
+    font-size: 1.4em;
+    counter-increment: h2-counter;
+    counter-reset: h3-counter;
+}
+
+j-h3
+{
+    font-family: 'JetBrains Mono';
+    color: #FF80AB;
+    font-weight: 600;
+    font-size: 1.2em;
+    counter-increment: h3-counter;
+}
+
+
+.section
+{
+    font-family: 'JetBrains Mono';
+    font-weight: 500;
+    font-size: 20px;
+    color: #1DE9B6;
+}
+
+
+.subtitle
+{
+    font-family: 'JetBrains Mono';
+    font-weight: 500;
+    font-size: 20px;
+    color: #1DE9B6;
+}
+
+.module
+{
+    font-family: 'JetBrains Mono';
+    font-weight: 500;
+    font-size: 18px;
+    color: #e61961;
+}
+
+.method
+{
+    font-family: 'JetBrains Mono';
+    font-weight: 500;
+    font-size: 18px;
+    color: #2196F3;
+}
+
+.syntax
+{
+    font-family: 'JetBrains Mono';
+    font-weight: 500;
+    font-size: 18px;
+    color: #f20d0d;
+}
