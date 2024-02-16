@@ -15,3 +15,11 @@ def calc_metrics(name, model):
         f1_score(y_test, y_pred),
         roc_auc_score(y_test, model.predict_proba(X_test)[:, 1])
     ]
+
+def replace_first_letter(value):
+    if value.startswith('C'):
+        return '1' + value[1:]
+    elif value.startswith('M'):
+        return '2' + value[1:]
+    else:
+        return value
