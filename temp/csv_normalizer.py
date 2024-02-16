@@ -1,11 +1,5 @@
 import pandas as pd
-from helpers import replace_first_letter
-
-def norm2float(df:pd.DataFrame, cols:list):
-    for col in cols:
-        df[col] = df[col].str.replace(',', '.').astype(float)
-        
-    return df
+from helpers import norm2float
 
 transactions = pd.read_csv('../res/credit_card_fraud.csv', sep=';', index_col='transactionId')
 transactions[['type']] = transactions[['type']].replace(['CASH_IN', 'CASH_OUT', 'DEBIT', 'PAYMENT', 'TRANSFER'], range(0, 5))

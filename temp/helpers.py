@@ -23,3 +23,9 @@ def replace_first_letter(value):
         return '2' + value[1:]
     else:
         return value
+    
+def norm2float(df:pd.DataFrame, cols:list):
+    for col in cols:
+        df[col] = df[col].str.replace(',', '.').astype(float)
+        
+    return df
