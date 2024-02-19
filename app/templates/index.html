@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="centered-container">
+        <div>
+            <h1>Bienvenue</h1>
+        </div>
+        <div class="cardview">
+            <span>Inscrivez-vous</span>
+
+            <form class="authentification" method="post">
+                <input type="email" id="email" name="email" placeholder="Adresse email" required>
+                <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+
+                <button>Valider</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
