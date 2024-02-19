@@ -1,6 +1,6 @@
 function toggleForm() {
-    var form = document.getElementById("myForm");
-    var toggleButton = document.getElementById("toggleButton");
+    let form = document.getElementById("myForm");
+    let toggleButton = document.getElementById("toggleButton");
 
     if (toggleButton.checked) {
         form.className = "operatorForm"; // Changer la classe du formulaire à "operatorForm"
