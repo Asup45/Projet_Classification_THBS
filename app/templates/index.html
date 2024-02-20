@@ -4,17 +4,30 @@
     <div class="centered-container">
         <div>
             <h1>Bienvenue</h1>
+            <form class="toggle">
+                <input id="user-client" type="radio" name="user" value="client" checked="checked" onchange="toggleForm()" />
+                <label for="user-client">Client</label>
+                <input id="user-operator" type="radio" name="user" value="operator" onchange="toggleForm()"/>
+                <label for="user-operator">Opérateur</label>
+            </form>
         </div>
         <div class="cardview">
-            <span>Inscrivez-vous</span>
+            <span id="authy-header">Connectez-vous</span>
+
+            <form class="toggle">
+                <input id="user-connect"  type="radio" name="validation" value="connexion" checked="checked" onchange="setValidation('connexion')" />
+                <label for="user-connect">Connexion</label>
+                <input id="user-register" type="radio" name="validation" value="register" onchange="setValidation('register')" class="" />
+                <label for="user-register">Inscription</label>
+            </form>
 
             <form class="authentification" method="post">
                 <input type="email" id="email" name="email" placeholder="Adresse email" required>
                 <input type="password" id="password" name="password" placeholder="Mot de passe" required>
 
                 <button>Valider</button>
-
-                <span id="authy-warning">Aucun autre mot de passe ne vous sera redonnée!</span>
+                
+                <span id="authy-warning" class="element-hide">Aucun autre mot de passe ne vous sera redonnée!</span>
             </form>
         </div>
     </div>

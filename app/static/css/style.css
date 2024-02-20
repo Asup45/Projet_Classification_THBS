@@ -15,6 +15,9 @@ html, body {
 
 h1 {
     font-size           : 3rem;
+    font-family         : 'Roboto Slab';
+    font-weight         : 600;
+    margin-bottom       : 50px;
 }
 
 span {
@@ -33,12 +36,24 @@ input {
     font-size           : 1rem;
 }
 
+select {
+    background-color    : var(--secondary-color);
+    border-radius       : 5px;
+    padding             : 7px 27px;
+    border              : 0px none white;
+    margin              : 7px 0px;
+    font-family         : 'Roboto';
+    font-size           : 1rem;
+    color: white;
+}
+
 input::placeholder {
     font-family         : 'Roboto';
     color               : white;
 }
 
 button {
+    width               : 100%;
     background-color    : var(--primary-color);
     border-radius       : 5px;
     padding             : 7px 15px;
@@ -51,6 +66,22 @@ button {
 button:hover {
     filter              : contrast(0.8);
 }
+
+.element-show {
+    opacity             : 100%;
+    animation-duration  : 1s;
+}
+
+.element-hide {
+    opacity             : 0%;
+    animation-duration  : 1s;
+}
+
+.element-disabled {
+    background-color    : #757575;
+    color               : #FAFAFA;
+}
+
 
 .centered-container {
     display             : flex;
@@ -81,19 +112,192 @@ button:hover {
 
 .authentification {
     display             : flex;
+    width               : 100%;
     flex-direction      : column;
-    margin              : 50px 0px;
+}
+
+#authy-header {
+    margin              : 20px 0px;
 }
 
 #authy-warning {
     font-family         : 'Roboto Condensed';
     font-size           : 0.9rem;
     font-weight         : 400;
-    margin-top          : 40px;
+    margin              : 20px 0px;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
     appearance: none; 
+}
+
+/* TOGGLE STYLING */
+.toggle {
+    margin              : 10px 0px 80px 0px;
+    box-sizing          : border-box;
+    font-size           : 0;
+    display             : flex;
+    flex-flow           : row nowrap;
+    justify-content     : flex-start;
+    align-items         : stretch;
+}
+.toggle input {
+    width               : 0;
+    height              : 0;
+    position            : absolute;
+    left                : -9999px;
+}
+
+.toggle input + label {
+    display             : inline-block;
+    margin              : 0;
+    padding             : 8px 2rem;
+    box-sizing          : border-box;
+    position            : relative;
+    border              : solid 1px #DDD;
+    background-color    : #FFF;
+    font-size           : 1rem;
+    font-family         : 'Roboto';
+    line-height         : 140%;
+    font-weight         : 600;
+    text-align          : center;
+    box-shadow          : 0 0 0 rgba(255, 255, 255, 0);
+    transition          : border-color 0.15s ease-out, color 0.25s ease-out, background-color 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.toggle input + label:first-of-type {
+    border-radius       : 6px 0 0 6px;
+    border-right        : none;
+}
+
+.toggle input + label:last-of-type {
+    border-radius       : 0 6px 6px 0;
+    border-left         : none;
+}
+.toggle input:hover + label {
+    border-color        : #213140;
+}
+
+.toggle input:checked + label {
+    background-color    : var(--primary-color);
+    color               : #FFF;
+    border-color        : var(--primary-color);
+    box-shadow          : 0 0 10px rgba(102, 179, 251, 0.5);
+    z-index             : 1;
+}
+
+.toggle input:focus + label {
+    outline             : dotted 1px #CCC;
+    outline-offset      : 0.45rem;
+}
+
+.toggle input[type="radio"].disabled {
+    pointer-events      : none;
+    user-select         : none;
+}
+
+
+.status {
+    margin              : 0;
+    font-size           : 1rem;
+    font-weight         : 400;
+}
+
+.status span {
+    font-weight         : 600;
+    color               : #B6985A;
+}
+
+.status span:first-of-type {
+    display             : inline;
+}
+
+.status span:last-of-type {
+    display             : none;
+}
+
+.status span:last-of-type {
+    display             : inline;
+}
+
+.toolbar {
+    display             : flex;
+}
+
+.toolbarr {
+    margin-top: 16px;
+    margin-left: 10px;
+}
+
+.toolbarl {
+    margin-left: 1200px;
+}
+
+.toolbarll {
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 16px;
+}
+
+hr {
+    border-width: 3px;
+    border-color: #03A9F4;
+}
+
+.transactions {
+    width: 350px;
+    height: auto;
+    left: 40%;
+    top: 40%;
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+}
+
+#cardviewtransaction {
+    display             : flex;
+    max-width           : 300px;
+    flex-direction      : column;
+    background-color    : var(--surface);
+    justify-content     : center;
+    align-items         : center;
+    padding             : 40px 70px;
+    border-radius       : 10px;
+    box-shadow          : 0px 0px 10px #0000006b;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+
+/* Split the screen in half */
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+  
+/* Control the left side */
+.left {
+    left: 0;
+    background-color: #111;
+}
+  
+/* Control the right side */
+.right {
+    right: 0;
+    background-color: red;
 }
