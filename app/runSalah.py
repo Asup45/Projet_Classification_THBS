@@ -5,6 +5,7 @@ from mysql.connector import Error
 
 app = Flask(__name__)
 
+# Configuration de la connexion à MySQL
 config_bdd = {
     'host': 'localhost',
     'user': 'root',
