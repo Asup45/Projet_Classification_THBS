@@ -7,7 +7,9 @@ app=Flask(__name__)
 @app.route('/')
 def index():
     return flask.render_template('index.html')
-@app.route('/',methods = ['POST'])
+
+#@app.route('/', methods = ['POST'])
+
 #logique de validation du mot de passe ou de création d'un utilisateur
 
 #@app.route('/predict',methods = ['POST'])
@@ -16,5 +18,5 @@ def index():
 #        # logique de prediction
 #        return render_template('predict.html', prediction=prediction)
 
-#if __name__ == "__main__":
-#    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)

@@ -4,9 +4,15 @@
     <div class="centered-container">
         <div>
             <h1>Bienvenue</h1>
+            <form class="toggle">
+                <input id="user-client"  type="radio" name="user" value="client" checked="checked" />
+                <label for="user-client">Client</label>
+                <input id="user-operator" type="radio" name="user" value="operator" />
+                <label for="user-operator">Operator</label>
+            </form>
         </div>
         <div class="cardview">
-            <span>Inscrivez-vous</span>
+            <span id="authy-header">Inscrivez-vous</span>
 
             <form class="authentification" method="post">
                 <input type="email" id="email" name="email" placeholder="Adresse email" required>
