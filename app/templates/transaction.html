@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="../../app/static/js/clienthome.js"></script>
+        <link href="../static/css/style.css" rel="stylesheet">
+        <div class="toolbar">
+            <a class="toolbarr" href="{{ url_for('client-home') }}">Accueil</a> 
+            <p class="toolbarl">user.email@example.com</p> 
+            <a class="toolbarll" href="{{ url_for('index-1') }}" id="">Logout</a>
+        </div>
+    </head>
+    <hr>
+    <body>
+        <div class="centered-container">
+            <form class="transactions" id="cardviewtransaction" method="post">
+                <ul>
+                    <h3 class="transaction">Faites une transaction</h3>
+                    <select name="type" id="typepaiement">
+                        <option value="">Choississez une option</option>
+                        <option value="CASH_IN">CASH_IN</option>
+                        <option value="CASH_OUT">CASH_OUT</option>
+                        <option value="DEBIT">DEBIT</option>
+                        <option value="PAYMENT">PAYMENT</option>
+                        <option value="TRANSFER">TRANSFER</option>
+                    </select>                
+                    <input type="number" id="amount" name="amount"/>
+                    <input type="text" id="nomdest" name="nomdest"/>
+                </ul>
+                <div class="button">
+                    <button type="submit">Valider</button>
+                  </div>
+            </form>
+        </div>
+        
+    </body>
+</html>
