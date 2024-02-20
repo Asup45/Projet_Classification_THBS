@@ -22,6 +22,13 @@ def load_data_from_database():
 @app.route('/')
 def index():
     return flask.render_template('index.html')
+<<<<<<< HEAD
+=======
+
+#@app.route('/', methods = ['POST'])
+
+#logique de validation du mot de passe ou de création d'un utilisateur
+>>>>>>> 6a4040eb43722b1927d7a0b047af22c64db57a61
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -42,4 +49,8 @@ def predict():
         return render_template('predict.html', data=data)
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     app.run(debug=True)
+=======
+    app.run(debug=True)
+>>>>>>> 6a4040eb43722b1927d7a0b047af22c64db57a61
