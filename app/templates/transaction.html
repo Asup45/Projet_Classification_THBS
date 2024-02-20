@@ -4,9 +4,9 @@
         <script src="../../app/static/js/clienthome.js"></script>
         <link href="../static/css/style.css" rel="stylesheet">
         <div class="toolbar">
-            <a class="toolbarr" href="{{ url_for('client-home') }}">Accueil</a> 
+            <a class="toolbarr" href="transaction.html">Accueil</a> 
             <p class="toolbarl">user.email@example.com</p> 
-            <a class="toolbarll" href="{{ url_for('index-1') }}" id="">Logout</a>
+            <a class="toolbarll" href="index.html">Logout</a>
         </div>
     </head>
     <hr>
@@ -23,8 +23,8 @@
                         <option value="PAYMENT">PAYMENT</option>
                         <option value="TRANSFER">TRANSFER</option>
                     </select>                
-                    <input type="number" id="amount" name="amount"/>
-                    <input type="text" id="nomdest" name="nomdest"/>
+                    <input type="number" id="amount" name="amount" placeholder="Montant"/>
+                    <input type="text" id="nomdest" name="nomdest"placeholder="Nom Destinataire"/>
                 </ul>
                 <div class="button">
                     <button type="submit">Valider</button>
