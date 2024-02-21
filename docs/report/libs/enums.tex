@@ -1,0 +1,37 @@
+\newenvironment{arabic-enum}[1][leftmargin = *]
+{
+    \begin{enumerate}
+    [ %
+        label = \normalfont\bfseries\arabic*.,
+        #1, rightmargin = 0mm,
+        itemsep = -3pt, topsep = 0pt
+    ] %
+} {
+    \end{enumerate}
+}
+
+\newenvironment{bullet-enum}
+{
+    \begin{enumerate}
+    [ %
+        label = \normalfont\bfseries$\bullet$,
+        leftmargin = *, rightmargin = 0mm,
+        itemsep = -3pt, topsep = 0pt
+    ] %
+} {
+    \end{enumerate}
+}
+
+\newenvironment{diamond-enum}
+{
+    \begin{enumerate}
+    [ %
+        label = \normalfont\bfseries$\diamond$,
+        leftmargin = *, rightmargin = 0mm,
+        itemsep = -3pt, topsep = 0pt
+    ] %
+} {
+    \end{enumerate}
+}
+
+\endinput

@@ -5,21 +5,38 @@
         <link href="../static/css/style.css" rel="stylesheet">
         <div class="toolbar">
             <a class="toolbarr" href="{{ url_for('client-home') }}">Accueil</a> 
-            <p class="toolbarl">{% useremail %}</p> 
+            <p class="toolbarl">{% nom_utilisateur %}</p> 
             <a class="toolbarll" href="{{ url_for('index-1') }}" id="">Logout</a>
         </div>
     </head>
     <hr>
     <body>
-        <div class="split left">
-            <div class="centered">
-                
+        <div id="bodyprediction">
+            <div class="split-left">
+                <form class="centered-container-predi" method="post">
+                    <h3 class="transaction">Vérifier les transactions</h3>
+                    <select id="verif"></select>
+                </form>
+            </div>
+            <div class="split-right">
+                <div id="historique">
+                    <h3 id="transaction">Historique</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>step</th>
+                                <th>type</th>
+                                <th>amount</th>
+                                <th>nameOrig</th>
+                                <th>oldbalanceOrig</th>
+                                <th>newblanaceOrig</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-          
-        <div class="split right">
-            <div class="centered">
-                
-            </div>
-        </div>
+        <script scr="../static/js/prediction.js"></script>
     </body>

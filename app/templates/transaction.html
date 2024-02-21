@@ -5,7 +5,7 @@
         <link href="../static/css/style.css" rel="stylesheet">
         <div class="toolbar">
             <a class="toolbarr" href="transaction.html">Accueil</a> 
-            <p class="toolbarl">user.email@example.com</p> 
+            <p class="toolbarl">{% nom_utilisateur %}</p> 
             <a class="toolbarll" href="index.html">Logout</a>
         </div>
     </head>
@@ -24,7 +24,7 @@
                         <option value="TRANSFER">TRANSFER</option>
                     </select>                
                     <input type="number" id="amount" name="amount" placeholder="Montant"/>
-                    <input type="text" id="nomdest" name="nomdest"placeholder="Nom Destinataire"/>
+                    <input type="text" id="nomdest" name="nomdest" placeholder="Nom Destinataire"/>
                 </ul>
                 <div class="button">
                     <button type="submit">Valider</button>
