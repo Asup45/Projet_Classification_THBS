@@ -14,14 +14,16 @@
         <div class="cardview">
             <span id="authy-header">Connectez-vous</span>
 
-            <form class="toggle">
-                <input id="user-connect"  type="radio" name="validation" value="connexion" checked="checked" onchange="setValidation('connexion')" />
-                <label for="user-connect">Connexion</label>
-                <input id="user-register" type="radio" name="validation" value="register" onchange="setValidation('register')" class="" />
-                <label for="user-register">Inscription</label>
-            </form>
+            
 
+            
             <form class="authentification" method="post">
+                <div class="toggle">
+                    <input id="user-connect"  type="radio" name="validation" value="connexion" checked="checked" onchange="setValidation('connexion')" />
+                    <label for="user-connect">Connexion</label>
+                    <input id="user-register" type="radio" name="validation" value="register" onchange="setValidation('register')" class="" />
+                    <label for="user-register">Inscription</label>
+                </div>
                 <input type="email" id="email" name="email" placeholder="Adresse email" required>
                 <input type="password" id="password" name="password" placeholder="Mot de passe" required>
 
@@ -29,6 +31,15 @@
                 
                 <span id="authy-warning" class="element-hide">Aucun autre mot de passe ne vous sera redonnée!</span>
             </form>
+
+
+            {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <div class="flash-message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% endwith %}
         </div>
     </div>
 {% endblock %}
