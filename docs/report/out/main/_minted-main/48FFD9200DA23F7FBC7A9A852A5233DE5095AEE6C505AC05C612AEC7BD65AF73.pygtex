@@ -1,0 +1,39 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{typepaiment}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}
+\PYG{+w}{    }\PYG{n}{typeID}\PYG{+w}{ }\PYG{k+kt}{INT}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{libelle}\PYG{+w}{ }\PYG{k+kt}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}
+\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{utilisateur}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}
+\PYG{+w}{    }\PYG{n}{email}\PYG{+w}{ }\PYG{k+kt}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{pass}\PYG{+w}{ }\PYG{k+kt}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{    }\PYG{k}{role}\PYG{+w}{ }\PYG{k+kt}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}
+\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{transactions\PYGZus{}utilisateur}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}
+\PYG{+w}{    }\PYG{n}{transactionID}\PYG{+w}{ }\PYG{k+kt}{INT}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{step}\PYG{+w}{ }\PYG{k+kt}{INT}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{amount}\PYG{+w}{ }\PYG{k+kt}{INT}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nameOrig}\PYG{+w}{ }\PYG{k+kt}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{oldbalanceOrg}\PYG{+w}{ }\PYG{k+kt}{DOUBLE}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{newbalanceOrig}\PYG{+w}{ }\PYG{k+kt}{DOUBLE}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nameDest}\PYG{+w}{ }\PYG{k+kt}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{oldbalanceDest}\PYG{+w}{ }\PYG{k+kt}{DOUBLE}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{newbalanceDest}\PYG{+w}{ }\PYG{k+kt}{DOUBLE}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{isFraud}\PYG{+w}{ }\PYG{k}{BYTE}
+\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{transactions}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}
+\PYG{+w}{    }\PYG{n}{transactionID}\PYG{+w}{ }\PYG{k+kt}{INT}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{step}\PYG{+w}{ }\PYG{k+kt}{INT}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{amount}\PYG{+w}{ }\PYG{k+kt}{INT}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nameOrig}\PYG{+w}{ }\PYG{k+kt}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{oldbalanceOrg}\PYG{+w}{ }\PYG{k+kt}{DOUBLE}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{newbalanceOrig}\PYG{+w}{ }\PYG{k+kt}{DOUBLE}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{nameDest}\PYG{+w}{ }\PYG{k+kt}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{oldbalanceDest}\PYG{+w}{ }\PYG{k+kt}{DOUBLE}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{newbalanceDest}\PYG{+w}{ }\PYG{k+kt}{DOUBLE}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{isFraud}\PYG{+w}{ }\PYG{k}{BYTE}\PYG{p}{,}
+\PYG{+w}{    }\PYG{c+c1}{\PYGZsh{}typeID}
+\PYG{p}{)}\PYG{p}{;}
+\end{Verbatim}

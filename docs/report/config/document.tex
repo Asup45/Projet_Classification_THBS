@@ -9,13 +9,13 @@
 \newcommand{\theextras}{\Alph{extra_counter}.\arabic{extras_counter}}
 
 % - <titles> -------------------------------------------------------------
-\renewcommand{\thechapter}{\arabic{chapter}}
+\renewcommand{\thechapter}{\Roman{chapter}}
 
-% \titleformat{\chapter}
-%     [display] % [block, display, runin, frame, leftmargin, rightmargin]
-%     {\normalfont\huge\bfseries} % before_code()
-%     {\thechapter.~~}{3mm}
-%     { } % after_code()
+\titleformat{\chapter}
+    [display] % [block, display, runin, frame, leftmargin, rightmargin]
+    {\normalfont\huge\bfseries} % before_code()
+    {\thechapter.~~}{3mm}
+    { } % after_code()
 
 \newcommand{\extra}[1]
 {

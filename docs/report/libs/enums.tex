@@ -10,17 +10,18 @@
     \end{enumerate}
 }
 
-\newenvironment{bullet-enum}
+\newenvironment{bullet-enum}[1][itemsep=-5pt]
 {
     \begin{enumerate}
     [ %
         label = \normalfont\bfseries$\bullet$,
         leftmargin = *, rightmargin = 0mm,
-        itemsep = -3pt, topsep = 0pt
+        #1, topsep = 0pt
     ] %
 } {
     \end{enumerate}
 }
+
 
 \newenvironment{diamond-enum}
 {
@@ -28,7 +29,7 @@
     [ %
         label = \normalfont\bfseries$\diamond$,
         leftmargin = *, rightmargin = 0mm,
-        itemsep = -3pt, topsep = 0pt
+        itemsep = 0pt, topsep = 0pt
     ] %
 } {
     \end{enumerate}

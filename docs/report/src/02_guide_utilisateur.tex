@@ -1,0 +1,21 @@
+\chapter{Guide Utilisateur}
+    L'application que nous avons conçu est composé de trois pages HTML:
+
+    \begin{orangebox}[index.html]
+        Page d'acceuil, qui permet de selectionner le type d'utilisateur (\textbf{client} ou \textbf{opérateur}). Elle permet à l'utilisateur de \emph{créer son compte} ou de se \emph{connecter}.
+        \\
+        \begin{bullet-enum}[itemsep=0pt]
+            \item \textbf{Inscription} -- \emph{si l'utilisateur choisi de s'inscrire, les informations fournies sont enregister dans la table} \ilc{utilisateur} \emph{de notre base de donnée puis il est rédiriger directement sur la page correspondante à son role.
+            Si l'utilisateur choisis de se réinscrire, son mot de passe est simplement mis à jour.}
+            \item \textbf{Connexion} -- \emph{l'utilisateur est envoyé vers la page qui correspond à son rôle.}
+        \end{bullet-enum}
+    \end{orangebox}
+
+    \begin{orangebox}[client-home.html]
+        Page désigner pour un client. Elle lui permet de faire une transaction, en specifiant le \textbf{type}, \textbf{montant} et le \textbf{nom destinataire}. \\[2mm]
+        \emph{Dû à l'incomplétude de données sur les utilisateurs, cette page web fait office de décor.}
+    \end{orangebox}
+
+    \begin{orangebox}[operator-home.html]
+        En spécifiant le spectre entier des informations nécessaires pour le modèle, elle permet à un opérateur de \textbf{prédire} si la transaction fournie est une fraude ou pas. Elle permet aussi d'afficher l'ensemble des transactions \emph{non-vérifié} ainsi que de \emph{filtrer} pas le nom d'utilisateur.
+    \end{orangebox}
