@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.secret_key = 'azerty'
 
 # Charger votre modèle pré-entrainé
-with open('XGBmodel.pkl', 'rb') as model_file:
+with open(r'C:\Users\Utilisateur2\Documents\FORM-DEVIA\3-CLASSIFICATION\7Projet\github\Projet_Classification_THBS\database\modele\XGBmodel.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
 
 # Configuration de la connexion à MySQL
@@ -66,13 +66,13 @@ def creer_utilisateur(nom_utilisateur, mot_de_passe,role):
     
 def load_data_from_database():
     # Se connecter à votre base de données MySQL
-    conn = conn = msql.connect(**config_bdd)
+    conn = msql.connect(**config_bdd)
     
     # Créer un curseur pour exécuter des requêtes SQL
     cursor = conn.cursor()
     
     # Exécuter la requête SQL pour récupérer les données
-    query = "SELECT * FROM transactions_utilisateur WHERE IsFraud IS NULL;"
+    query = "SELECT * FROM transactions_utilisateur;"
     cursor.execute(query)
     
     # Récupérer les résultats de la requête et les stocker dans un DataFrame pandas
@@ -108,7 +108,8 @@ def connexion():
         if utilisateur:
             # Identifiants valides, rediriger en fonction du rôle
             if utilisateur[2] == 'operateur': #test du role operateur pour identification pour renvoyer sur  prediction
-                return render_template('prediction.html')
+                
+                return redirect(url_for('predictBase')) 
             else:                             #test du role client pour identification pour renvoyer sur  transaction
                 return render_template('transaction.html')
         else:
@@ -130,19 +131,21 @@ def connexion():
             flash("Problème création client. Veuillez réessayer")
             return render_template('index.html') 
                
-@app.route('/predict', methods=['GET'])
+@app.route('/prediction', methods=['GET'])
 def predictBase():
     data = load_data_from_database()
+    print("data:", data)
     # Supprimer la colonne "IsFraud" si elle existe
     if 'IsFraud' in data.columns:
         data.drop(columns=['IsFraud'], inplace=True)
+        data.drop(columns=['transactionId'],inplace=True)
     
     # Faire des prédictions
     predictions = model.predict(data)
     
     # Ajouter les prédictions à vos données
     data['IsFraud'] = predictions.tolist()
-    
+    print("data:", data)
     # Renommer la colonne des prédictions
     return render_template('prediction.html', data=data)
 
