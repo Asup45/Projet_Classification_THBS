@@ -1,7 +1,37 @@
-                    def replace_first_letter(value):
-                        if value.startswith('C'):
-                            return '1' + value[1:]
-                        elif value.startswith('M'):
-                            return '2' + value[1:]
-                        else:
-                            return value
+                typepaiment = (
+                    typeID INT,
+                    libelle VARCHAR(150)
+                );
+
+                utilisateur = (
+                    email VARCHAR(50),
+                    pass VARCHAR(150),
+                    role VARCHAR(50)
+                );
+
+                transactions_utilisateur = (
+                    transactionID INT,
+                    step INT,
+                    amount INT,
+                    nameOrig VARCHAR(150),
+                    oldbalanceOrg DOUBLE,
+                    newbalanceOrig DOUBLE,
+                    nameDest VARCHAR(150),
+                    oldbalanceDest DOUBLE,
+                    newbalanceDest DOUBLE,
+                    isFraud BYTE
+                );
+
+                transactions = (
+                    transactionID INT,
+                    step INT,
+                    amount INT,
+                    nameOrig VARCHAR(150),
+                    oldbalanceOrg DOUBLE,
+                    newbalanceOrig DOUBLE,
+                    nameDest VARCHAR(150),
+                    oldbalanceDest DOUBLE,
+                    newbalanceDest DOUBLE,
+                    isFraud BYTE,
+                    #typeID
+                );

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n}{Typepaiment} \PYG{o}{=} \PYG{p}{(}
+    \PYG{n}{typeID} \PYG{n}{INT}\PYG{p}{,}
+    \PYG{n}{Libelle} \PYG{n}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}
+\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{utilisateur} \PYG{o}{=} \PYG{p}{(}
+    \PYG{n}{email} \PYG{n}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{p}{,}
+    \PYG{k}{pass} \PYG{n}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}\PYG{p}{,}
+    \PYG{n}{role} \PYG{n}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{50}\PYG{p}{)}
+\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{transactions\PYGZus{}utilisateur} \PYG{o}{=} \PYG{p}{(}\PYG{n}{transactionuID} \PYG{n}{INT}\PYG{p}{,} \PYG{n}{step} \PYG{n}{INT}\PYG{p}{,} \PYG{n}{amount} \PYG{n}{INT}\PYG{p}{,} \PYG{n}{NameOrig} \PYG{n}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}\PYG{p}{,} \PYG{n}{oldbalanceOrg} \PYG{n}{DOUBLE}\PYG{p}{,} \PYG{n}{newbalanceOrig} \PYG{n}{DOUBLE}\PYG{p}{,} \PYG{n}{nameDest} \PYG{n}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}\PYG{p}{,} \PYG{n}{oldbalanceDest} \PYG{n}{DOUBLE}\PYG{p}{,} \PYG{n}{newbalanceDest} \PYG{n}{DOUBLE}\PYG{p}{,} \PYG{n}{IsFraud} \PYG{n}{BYTE}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{transactions} \PYG{o}{=} \PYG{p}{(}\PYG{n}{transactionID} \PYG{n}{INT}\PYG{p}{,} \PYG{n}{step} \PYG{n}{INT}\PYG{p}{,} \PYG{n}{amount} \PYG{n}{INT}\PYG{p}{,} \PYG{n}{NameOrig} \PYG{n}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}\PYG{p}{,} \PYG{n}{oldbalanceOrg} \PYG{n}{DOUBLE}\PYG{p}{,} \PYG{n}{newbalanceOrig} \PYG{n}{DOUBLE}\PYG{p}{,} \PYG{n}{nameDest} \PYG{n}{VARCHAR}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{)}\PYG{p}{,} \PYG{n}{oldbalanceDest} \PYG{n}{DOUBLE}\PYG{p}{,} \PYG{n}{newbalanceDest} \PYG{n}{DOUBLE}\PYG{p}{,} \PYG{n}{IsFraud} \PYG{n}{BYTE}\PYG{p}{,} \PYG{c+c1}{\PYGZsh{}typeID);}
+\end{Verbatim}
