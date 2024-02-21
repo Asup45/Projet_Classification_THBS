@@ -2,14 +2,6 @@
 
 {% block content %}
     <div class="centered-container">
-        <!--Permet d'afficher les messages d'erreurs-->
-        {% with messages = get_flashed_messages() %}
-            {% for message in messages %}
-                <div class="flash-message">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endwith %}
         <div>
             <h1>Bienvenue</h1>
             <form class="toggle">

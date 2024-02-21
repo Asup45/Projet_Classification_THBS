@@ -82,9 +82,9 @@ def connexion():
         if utilisateur:
             # Identifiants valides, rediriger en fonction du rôle
             if utilisateur[2] == 'operateur': #test du role operateur pour identification pour renvoyer sur  prediction
-                return render_template('prediction.html',nom_utilisateur)
+                return render_template('prediction.html')
             else:                             #test du role client pour identification pour renvoyer sur  transaction
-                return render_template('transaction.html',nom_utilisateur)
+                return render_template('transaction.html')
         else:
             # Identifiants invalides=> index avec message erreur
             flash("Identifiants invalides. Veuillez réessayer.")
@@ -98,7 +98,7 @@ def connexion():
 
         if utilisateur:
             # creation client et Identifiant valide 
-            return render_template('transaction.html',nom_utilisateur )
+            return render_template('transaction.html')
         else:
             # creation invalide=> index avec message erreur
             flash("Problème création client. Veuillez réessayer")
