@@ -9,14 +9,14 @@ app = Flask(__name__)
 app.secret_key = 'azerty'
 
 # Charger votre modèle pré-entrainé
-with open('XGBmodel.pkl', 'rb') as model_file:
+with open('C:/Users/GRETA/Documents/GitHub/Projet_Classification_THBS/database/modele/XGBmodel.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
 
 # Configuration de la connexion à MySQL
 config_bdd = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'admin',
+    'password': 'aqzsedrftg21!87',
     'database': 'projet_fraudedb'
 }
 

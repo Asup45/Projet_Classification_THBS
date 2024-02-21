@@ -356,10 +356,6 @@ th {
     background-color: #D9D9D9;
 }
 
-.useless {
-    border: 8px solid #D9D9D9;
-}
-
 /* Permet d'afficher les messages d'erreurs pour l'utilisateurs */
 .flash-message {
     color: red;
