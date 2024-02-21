@@ -1,0 +1,61 @@
+% - <counters> -----------------------------------------------------------
+\newcounter{extra_counter}
+\setcounter{extra_counter}{0}
+
+\newcounter{extras_counter}
+\setcounter{extras_counter}{1}
+
+\newcommand{\theextra}{\Alph{extra_counter}}
+\newcommand{\theextras}{\Alph{extra_counter}.\arabic{extras_counter}}
+
+% - <titles> -------------------------------------------------------------
+\renewcommand{\thechapter}{\arabic{chapter}}
+
+% \titleformat{\chapter}
+%     [display] % [block, display, runin, frame, leftmargin, rightmargin]
+%     {\normalfont\huge\bfseries} % before_code()
+%     {\thechapter.~~}{3mm}
+%     { } % after_code()
+
+\newcommand{\extra}[1]
+{
+    \stepcounter{extra_counter}
+    \setcounter{extras_counter}{0}
+    \chapter*{\theextra.\quad#1}
+    \addcontentsline{toc}{chapter}{\theextra.\quad#1}
+}
+
+\newcommand{\extras}[1]
+{
+    \stepcounter{extras_counter}
+    \section*{\theextras.\quad#1}
+    \addcontentsline{toc}{section}{\theextras.\quad#1}
+}
+
+% - <doc_header> ---------------------------------------------------------
+\pagestyle{plain}
+\renewcommand{\chaptermark}[1]{
+    \markboth{ \normalfont\textbf{\thechapter.}~\MakeUppercase{#1} }{ }
+}
+
+% - <tables> -------------------------------------------------------------
+\renewcommand{\arraystretch}{1.2}
+
+% - <paragraphs> ---------------------------------------------------------
+\setlength\parindent{0pt}
+\setlength\parskip{3mm}
+
+\newcommand{\mms}{\hspace*{2mm}}
+\newcommand{\nextpar}{\\[2mm]}
+\newcommand{\nextenv}{\vspace*{3mm}}
+
+% - <links> --------------------------------------------------------------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=mBlue400,
+    citecolor=green,
+    urlcolor=red,
+    pdfborder={0 0 0},
+}
+
+\endinput
