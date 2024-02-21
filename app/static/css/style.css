@@ -29,12 +29,19 @@ span {
 
 input {
     background-color    : var(--secondary-color);
-    border-radius       : 5px;
-    padding             : 7px 15px;
-    border              : 0px none white;
     margin              : 7px 0px;
+    padding             : 7px 15px;
+    border              : solid 1px #DDD;
+    border-radius       : 5px;
     font-family         : 'Roboto';
     font-size           : 1rem;
+    box-shadow          : 0 0 0 rgba(255, 255, 255, 0);
+    box-sizing          : border-box;
+    transition          : border-color 0.15s ease-out, color 0.25s ease-out, background-color 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+input:hover {
+    border              : solid 1px #213140;
 }
 
 select {
@@ -55,17 +62,21 @@ input::placeholder {
 
 button {
     width               : 100%;
-    background-color    : var(--primary-color);
-    border-radius       : 5px;
-    padding             : 7px 15px;
-    border              : 0px none white;
     margin              : 30px 0px 10px 0px;
+    padding             : 7px 15px;
+    background-color    : var(--primary-color);
+    border              : solid 1px #DDD;
+    border-radius       : 5px;
+    box-shadow          : 0 0 0 rgba(255, 255, 255, 0);
+    box-sizing          : border-box;
     font-family         : 'Roboto';
     font-size           : 1rem;
+    transition          : border-color 0.15s ease-out, color 0.25s ease-out, background-color 0.15s ease-out, box-shadow 0.15s ease-out;
 }
 
 button:hover {
     filter              : contrast(0.8);
+    border              : solid 1px #213140;
 }
 
 .element-show {
@@ -118,7 +129,7 @@ button:hover {
 }
 
 #authy-header {
-    margin              : 20px 0px;
+    margin              : 40px 0px;
 }
 
 #authy-warning {
@@ -136,7 +147,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* TOGGLE STYLING */
 .toggle {
-    margin              : 10px 0px 80px 0px;
+    margin              : 10px 0px 20px 0px;
     box-sizing          : border-box;
     font-size           : 0;
     display             : flex;
@@ -144,6 +155,7 @@ input[type=number]::-webkit-outer-spin-button {
     justify-content     : flex-start;
     align-items         : stretch;
 }
+
 .toggle input {
     width               : 0;
     height              : 0;
@@ -198,7 +210,6 @@ input[type=number]::-webkit-outer-spin-button {
     pointer-events      : none;
     user-select         : none;
 }
-
 
 .status {
     margin              : 0;
@@ -354,10 +365,6 @@ th, td {
 
 th {
     background-color: #D9D9D9;
-}
-
-.useless {
-    border: 8px solid #D9D9D9;
 }
 
 /* Permet d'afficher les messages d'erreurs pour l'utilisateurs */

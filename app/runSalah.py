@@ -10,7 +10,7 @@ app.secret_key = 'azerty'
 config_bdd = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'admin',
+    'password': 'aqzsedrf21!87',
     'database': 'projet_fraudedb'
 }
 

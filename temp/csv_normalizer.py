@@ -7,5 +7,6 @@ transactions[['type']] = transactions[['type']].replace(['CASH_IN', 'CASH_OUT', 
 transactions['nameOrig'] = transactions['nameOrig'].apply(replace_first_letter)
 transactions['nameDest'] = transactions['nameDest'].apply(replace_first_letter)
 transactions = norm2float(transactions, ['amount', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'nameOrig', 'nameDest'])
+#transactions = norm2int(transactions, ['nameOrig', 'nameDest'])
 
 transactions.to_csv('../database/transactions.csv', index='transactionId', sep=',')
