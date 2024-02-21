@@ -130,7 +130,7 @@ def connexion():
             flash("Problème création client. Veuillez réessayer")
             return render_template('index.html') 
                
-@app.route('/predict', methods=['GET'])
+@app.route('/prediction', methods=['GET'])
 def predictBase():
     data = load_data_from_database()
     # Supprimer la colonne "IsFraud" si elle existe

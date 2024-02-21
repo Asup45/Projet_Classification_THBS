@@ -1,5 +1,7 @@
-// Récupérer les données depuis le modèle Python rendu dans la page HTML
-const predictedData = {{ data | safe }};
+// Récupérer les données depuis la route Flask
+const predictedData = {{ data | tojson | safe }};
+// Utiliser les données récupérées dans votre script JavaScript
+console.log(predictedData);
 
 // Récupérer les données prédites depuis le sessionStorage
 const sessionData = JSON.parse(sessionStorage.getItem('data'));
