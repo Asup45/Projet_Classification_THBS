@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="../../app/static/js/clienthome.js"></script>
+        <!--Lien vers le feuille de style-->
         <link href="../static/css/style.css" rel="stylesheet">
+        <!--Barre de navigation-->
         <div class="toolbar">
-            <a class="toolbarr" href="{{ url_for('client-home') }}">Accueil</a> 
-            <p class="toolbarl">{% nom_utilisateur %}</p> 
-            <a class="toolbarll" href="{{ url_for('index-1') }}" id="">Logout</a>
+            <a class="toolbarr" href="prediction">Accueil</a> 
+            <p class="toolbarl">{% sessionStorage.getItem('email') %}</p> 
+            <a class="toolbarll" href="/" id="">Logout</a>
         </div>
     </head>
+    <!--Séparation entre la barre de navigation et la page-->
     <hr>
     <body>
+        <!--Division regroupant la séparation (permet d'ajouter du style plus facilement)-->
         <div id="bodyprediction">
+            <!--Séparation gauche de la page-->
             <div class="split-left">
                 <form class="centered-container-predi" method="post">
-                    <h3 class="transaction">Vérifier les transactions</h3>
+                    <h3 class="transaction">Choisir un filtre pour les transactions</h3>
+                    <!--Sera rempli avec du javascript-->
                     <select id="verif"></select>
                 </form>
             </div>
+            <!--Séparation droite de la page-->
             <div class="split-right">
                 <div id="historique">
                     <h3 id="transaction">Historique</h3>
                     <table>
                         <thead>
-                            <tr>
+                            <tr id="useless">
                                 <th>step</th>
                                 <th>type</th>
                                 <th>amount</th>
@@ -32,11 +38,13 @@
                                 <th>newblanaceOrig</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <!--Sera rempli avec du javascipt-->
+                        <tbody  id="tablebody">
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+        <!--Lien vers le script javascript-->
         <script scr="../static/js/prediction.js"></script>
     </body>

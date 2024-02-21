@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="../../app/static/js/clienthome.js"></script>
+        <!--Lien vers la feuille de style-->
         <link href="../static/css/style.css" rel="stylesheet">
+        <!--Barre de navigation-->
         <div class="toolbar">
-            <a class="toolbarr" href="transaction.html">Accueil</a> 
-            <p class="toolbarl">{% nom_utilisateur %}</p> 
-            <a class="toolbarll" href="index.html">Logout</a>
+            <a class="toolbarr" href="transaction">Accueil</a> 
+            <p class="toolbarl">{% sessionStorage.getItem('email') %}</p> 
+            <a class="toolbarll" href="/">Logout</a>
         </div>
     </head>
+    <!--Séparation entre la barre de navigation et la page-->
     <hr>
     <body>
+        <!--Division regroupant la séparation (permet d'ajouter du style plus facilement)-->
         <div class="centered-container">
+            <!--Formulaire permentant de choisir le type de paiement, le montant et le nom du destinataire-->
             <form class="transactions" id="cardviewtransaction" method="post">
                 <ul>
                     <h3 class="transaction">Faites une transaction</h3>
-                    <select name="type" id="typepaiement">
+                    <select name="type" id="typepaiement" required>
                         <option value="">Choississez une option</option>
                         <option value="CASH_IN">CASH_IN</option>
                         <option value="CASH_OUT">CASH_OUT</option>
                         <option value="DEBIT">DEBIT</option>
                         <option value="PAYMENT">PAYMENT</option>
                         <option value="TRANSFER">TRANSFER</option>
-                    </select>                
-                    <input type="number" id="amount" name="amount" placeholder="Montant"/>
-                    <input type="text" id="nomdest" name="nomdest" placeholder="Nom Destinataire"/>
+                    </select>
+                    <input type="number" id="amount" name="amount" placeholder="Montant" required/>
+                    <input type="text" id="nomdest" name="nomdest" placeholder="Nom Destinataire" required/>
                 </ul>
                 <div class="button">
                     <button type="submit">Valider</button>
                   </div>
             </form>
         </div>
-        
     </body>
 </html>
