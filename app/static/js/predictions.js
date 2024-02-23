@@ -1,5 +1,5 @@
 // Récupérer les données depuis la route Flask
-const predictedData = {{ data | tojson | safe }};
+const predictedData = {{ data | safe }};
 // Utiliser les données récupérées dans votre script JavaScript
 console.log(predictedData);
 

@@ -86,13 +86,30 @@ def load_data_from_database():
     
     return data, nameOrig_options
 
-def mettre_a_jour_isfraud_par_transactionid(transaction_id, nouvelle_valeur):
+def mettre_a_jour_isfraud_en_bloc(data):
     try:
         conn = msql.connect(**config_bdd)
         cursor = conn.cursor()
 
-        mise_a_jour_requete = "UPDATE transactions_utilisateur SET IsFraud = %s WHERE transactionId = %s"
-        cursor.execute(mise_a_jour_requete, (nouvelle_valeur, transaction_id))
+        # Création d'une liste de tuples (nouvelle_valeur_isfraud, transaction_id)
+        valeurs_a_mettre_a_jour = [(row['IsFraud'], row['transactionId']) for index, row in data.iterrows()]
+
+        # Création de la requête SQL pour la mise à jour en bloc
+        mise_a_jour_requete = """
+            UPDATE transactions_utilisateur 
+            SET IsFraud = CASE 
+                %s 
+                ELSE IsFraud 
+            END
+            WHERE transactionId IN (%s)
+        """
+        
+        # Construction des parties de la requête pour les valeurs et les identifiants
+        valeurs_sql = " ".join(["WHEN %s THEN %s" % (item[1], item[0]) for item in valeurs_a_mettre_a_jour])
+        identifiants_sql = ", ".join(["%s" for item in valeurs_a_mettre_a_jour])
+
+        # Exécution de la requête
+        cursor.execute(mise_a_jour_requete % (valeurs_sql, identifiants_sql), [item[1] for item in valeurs_a_mettre_a_jour])
 
         conn.commit()
         cursor.close()
@@ -101,6 +118,7 @@ def mettre_a_jour_isfraud_par_transactionid(transaction_id, nouvelle_valeur):
     except Error as err:
         print(f"Erreur : {err}")
         return False
+
 
 
 
@@ -160,7 +178,7 @@ def connexion():
 def prediction():
     data, nameOrig_options = load_data_from_database() #data et filtre
     print("data:", data)
-    print("data before filtering:", data)#verifie avant filtre
+    #print("data before filtering:", data)#verifie avant filtre
 
     # Supprimer la colonne "IsFraud" si elle existe
     if 'IsFraud' in data.columns:
@@ -175,8 +193,8 @@ def prediction():
     # Ajouter les prédictions à vos données
     data['IsFraud'] = predictions.tolist()
 
-    print("data:", data)
-    print("Unique values in nameOrig:", data['nameOrig'].unique().tolist()) #verifie la source de la liste
+    #print("data:", data)
+    #print("Unique values in nameOrig:", data['nameOrig'].unique().tolist()) #verifie la source de la liste
 
     
 
@@ -199,15 +217,14 @@ def prediction():
         selected_filter = ''
         filtered_data = data
 
-    print("filtered_data:", filtered_data)#pour verif data filtré
+    #print("filtered_data:", filtered_data)#pour verif data filtré
     data = pd.concat([data, transactionId_backup], axis=1)
     data.rename(columns={'transactionId_backup': 'transactionId'}, inplace=True)
     print("Data:", data)
+
     # Boucle pour mettre à jour la base de données avec les nouvelles valeurs de IsFraud
-    for index, row in data.iterrows():
-        transaction_id = row['transactionId']
-        nouvelle_valeur_isfraud = row['IsFraud']
-        mettre_a_jour_isfraud_par_transactionid(transaction_id, nouvelle_valeur_isfraud)
+    mettre_a_jour_isfraud_en_bloc(data)
+
     #return render_template('prediction.html', data=data, nameOrig_options=nameOrig_options)
     # Renvoyer les données filtrées et les options de filtre au template
     # Ajouter la colonne sauvegardée à la fin du DataFrame

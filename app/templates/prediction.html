@@ -4,11 +4,24 @@
         <!--Lien vers le feuille de style-->
         <link href="../static/css/style.css" rel="stylesheet">
         <!--Barre de navigation-->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var selectedFilter = "{{ selected_filter }}";
+                var verifSelect = document.getElementById('verif');
+                
+                for (var i = 0; i < verifSelect.options.length; i++) {
+                    if (verifSelect.options[i].value === selectedFilter) {
+                        verifSelect.options[i].selected = true;
+                        break;
+                    }
+                }
+            });
+        </script>
         <div class="toolbar">
-            <a class="toolbarr" href="prediction">Accueil</a> 
+            <a class="toolbarr" href="prediction">Accueil MoneyShield</a>
+            <a class="toolbarll">Bienvenue {{ session['utilisateur'] }}</a>
             <a class="toolbarll" href="/" id="">Logout</a>
         </div>
-        <script scr="../static/js/prediction.js" defer></script>
     </head>
     <!--Séparation entre la barre de navigation et la page-->
     <hr>
@@ -17,33 +30,51 @@
         <div id="bodyprediction">
             <!--Séparation gauche de la page-->
             <div class="split-left">
-                <form class="centered-container-predi" method="post">
+                <form class="centered-container-predi" method="post" action="/prediction">
                     <h3 class="transaction">Choisir un filtre pour les transactions</h3>
-                    <!--Sera rempli avec du javascript-->
-                    <select id="verif"></select>
+                    <!-- Utiliser les options de nameOrig comme valeurs du menu déroulant -->
+                    <select name="filter" id="verif" onchange="this.form.submit()">
+                        <option value="" {% if not selected_filter %}selected{% endif %}>Tous</option> <!-- Option pour afficher toutes les données -->
+                        {% for option in nameOrig_options %}
+                            <option value="{{ option }}" {% if option == selected_filter %}selected{% endif %}>{{ option|round|int }}</option>
+                        {% endfor %}
+                    </select>                    
                 </form>
             </div>
             <!--Séparation droite de la page-->
             <div class="split-right">
                 <div id="historique">
-                    <h3 id="transaction">Historique</h3>
+                    <h3 id="transaction">Prédiction transactions clients</h3>
                     <table>
-                        <thead>
+                        <thead class="fixed-header" style="position: sticky; top: 0; background-color: #f2f2f2; z-index: 1;">
                             <tr id="useless">
                                 <th>step</th>
                                 <th>type</th>
                                 <th>amount</th>
                                 <th>nameOrig</th>
-                                <th>oldbalanceOrig</th>
+                                <th>oldbalanceOrg</th>
                                 <th>newblanaceOrig</th>
+                                <th>IsFraud</th>
                             </tr>
                         </thead>
                         <!--Sera rempli avec du javascipt-->
-                        <tbody  id="tablebody">
+                        <tbody id="tablebody">
+                            {% for entry in data.itertuples() %}
+                                <tr class="{% if entry.IsFraud == 1 %}isFraud-red{% elif entry.IsFraud == 0 %}isFraud-green{% endif %}">
+                                    <td>{{ entry.step }}</td>
+                                    <td>{{ entry.type }}</td>
+                                    <td>{{ entry.amount }}</td>
+                                    <td>{{ entry.nameOrig|round|int }}</td>
+                                    <td>{{ entry.oldbalanceOrg }}</td>
+                                    <td>{{ entry.newbalanceOrig }}</td>
+                                    <td>{{ entry.IsFraud }}</td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+    
 
     </body>

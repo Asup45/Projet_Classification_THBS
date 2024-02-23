@@ -299,6 +299,7 @@ hr {
 
 /* Fonction css principalement utiliser pour prediction.html */
 
+
 #bodyprediction {
     
     display: flex;
@@ -323,7 +324,7 @@ hr {
 .split-left,
 .split-right {
     width: 50%; /* Chaque côté prend la moitié de l'espace */
-    height: 100%;
+    height: 100vh;
     padding: 1rem;
     box-sizing: border-box;
 }
@@ -349,24 +350,32 @@ hr {
 }
 
 /* Style pour le tableau */
+/* Ajoutez des styles CSS pour le tableau */
 table {
     width: 100%;
     border-collapse: collapse;
-}
-
-tr {
-    border: 8px solid #03A9F4;
-    padding: 8px;
+    margin-top: 20px;
 }
 
 th, td {
-    text-align: center;
+    border: 1px solid #ddd; /* Ajoutez une bordure */
+    text-align: left;
+    padding: 8px;
+    color: #333; /* Couleur du texte */
 }
 
 th {
-    background-color: #D9D9D9;
+    background-color: #f2f2f2;
+}
+.isFraud-red {
+    color: white;
+    background-color: rgb(217, 144, 144);
 }
 
+.isFraud-green {
+    color: white;
+    background-color: rgb(67, 206, 162);
+}
 /* Permet d'afficher les messages d'erreurs pour l'utilisateurs */
 .flash-message {
     color: red;
@@ -375,4 +384,8 @@ th {
     background-color: #f2dede;
     border: 1px solid #e0b4b4;
     border-radius: 5px;
+}
+#historique {
+    max-height: 900px; /* Définissez la hauteur maximale souhaitée */
+    overflow-y: auto; /* Activez le défilement vertical si nécessaire */
 }

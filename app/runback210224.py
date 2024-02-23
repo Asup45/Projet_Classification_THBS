@@ -2,7 +2,6 @@ import flask
 import pickle
 import pandas as pd
 from flask import Flask, render_template, request, redirect, url_for,flash
-from flask import session #pour recuperer donnée de session comme le nom utilisateur
 import mysql.connector as msql
 from mysql.connector import Error
 
@@ -73,37 +72,18 @@ def load_data_from_database():
     cursor = conn.cursor()
     
     # Exécuter la requête SQL pour récupérer les données
-    query = "SELECT * FROM transactions_utilisateur WHERE IsFraud IS NULL;"
+    query = "SELECT * FROM transactions_utilisateur;"
     cursor.execute(query)
     
     # Récupérer les résultats de la requête et les stocker dans un DataFrame pandas
     data = pd.DataFrame(cursor.fetchall(), columns=cursor.column_names)
-    # Récupérer les valeurs distinctes de nameOrig
-    nameOrig_options = data['nameOrig'].unique().tolist()
+    
     # Fermer le curseur et la connexion à la base de données
     cursor.close()
     conn.close()
     
-    return data, nameOrig_options
-
-def mettre_a_jour_isfraud_par_transactionid(transaction_id, nouvelle_valeur):
-    try:
-        conn = msql.connect(**config_bdd)
-        cursor = conn.cursor()
-
-        mise_a_jour_requete = "UPDATE transactions_utilisateur SET IsFraud = %s WHERE transactionId = %s"
-        cursor.execute(mise_a_jour_requete, (nouvelle_valeur, transaction_id))
-
-        conn.commit()
-        cursor.close()
-        conn.close()
-        return True
-    except Error as err:
-        print(f"Erreur : {err}")
-        return False
-
-
-
+    return data    
+    
 # Insérer la ligne admin@moneyshied.fr, admin, operateur s'il n'existe pas
 if not valider_utilisateur('admin@moneyshield.fr', 'admin'):
     creer_utilisateur('admin@moneyshield.fr', 'admin', 'operateur')
@@ -126,15 +106,12 @@ def connexion():
         utilisateur = valider_utilisateur(nom_utilisateur, mot_de_passe)
 
         if utilisateur:
-            session['utilisateur'] = nom_utilisateur  # Ajout du nom d'utilisateur à la session pour recuperer dans template
             # Identifiants valides, rediriger en fonction du rôle
             if utilisateur[2] == 'operateur': #test du role operateur pour identification pour renvoyer sur  prediction
                 
                 return redirect(url_for('prediction')) 
             else:                             #test du role client pour identification pour renvoyer sur  transaction
-                #return render_template('transaction.html')
-                return redirect(url_for('transaction')) 
-
+                return render_template('transaction.html')
         else:
             # Identifiants invalides=> index avec message erreur
             flash("Identifiants invalides. Veuillez réessayer.")
@@ -147,26 +124,20 @@ def connexion():
         utilisateur = creer_utilisateur(nom_utilisateur, mot_de_passe,'client')
 
         if utilisateur:
-            session['utilisateur'] = nom_utilisateur  # Ajout du nom d'utilisateur à la session pour recuperer dans template
             # creation client et Identifiant valide 
-            return redirect(url_for('transaction')) 
+            return render_template('transaction.html')
         else:
             # creation invalide=> index avec message erreur
             flash("Problème création client. Veuillez réessayer")
             return render_template('index.html') 
                
-#@app.route('/prediction', methods=['GET'])
-@app.route('/prediction', methods=['GET', 'POST'])
+@app.route('/prediction', methods=['GET'])
 def prediction():
-    data, nameOrig_options = load_data_from_database() #data et filtre
+    data = load_data_from_database()
     print("data:", data)
-    print("data before filtering:", data)#verifie avant filtre
-
     # Supprimer la colonne "IsFraud" si elle existe
     if 'IsFraud' in data.columns:
         data.drop(columns=['IsFraud'], inplace=True)
-        # Copier la colonne transactionId avant de la supprimer
-        transactionId_backup = data['transactionId'].copy()
         data.drop(columns=['transactionId'],inplace=True)
     
     # Faire des prédictions
@@ -174,59 +145,13 @@ def prediction():
     
     # Ajouter les prédictions à vos données
     data['IsFraud'] = predictions.tolist()
-
+    data= data.to_json(orient='records')
     print("data:", data)
-    print("Unique values in nameOrig:", data['nameOrig'].unique().tolist()) #verifie la source de la liste
-
-    
-
-
-
-
-
-
-
-    if request.method == 'POST':
-        selected_filter = request.form.get('filter', '')
-        print("selected_filter:", selected_filter)#pour verif filtre selectionné
-        # Filtrer les données en fonction du filtre
-        if selected_filter:
-            #filtered_data = data[data['nameOrig'] == selected_filter]
-            filtered_data = data[data['nameOrig'].astype(float) == float(selected_filter)]
-        else:
-            filtered_data = data
-    else:
-        selected_filter = ''
-        filtered_data = data
-
-    print("filtered_data:", filtered_data)#pour verif data filtré
-    data = pd.concat([data, transactionId_backup], axis=1)
-    data.rename(columns={'transactionId_backup': 'transactionId'}, inplace=True)
-    print("Data:", data)
-    # Boucle pour mettre à jour la base de données avec les nouvelles valeurs de IsFraud
-    for index, row in data.iterrows():
-        transaction_id = row['transactionId']
-        nouvelle_valeur_isfraud = row['IsFraud']
-        mettre_a_jour_isfraud_par_transactionid(transaction_id, nouvelle_valeur_isfraud)
-    #return render_template('prediction.html', data=data, nameOrig_options=nameOrig_options)
-    # Renvoyer les données filtrées et les options de filtre au template
-    # Ajouter la colonne sauvegardée à la fin du DataFrame
-    
-    return render_template('prediction.html', data=filtered_data, nameOrig_options=nameOrig_options, selected_filter=selected_filter)
+    # Renommer la colonne des prédictions
+    return render_template('prediction.html', data=data)
 
 #integrer dans le template {% with messages = get_flashed_messages() %} et {% for message in messages %} pour visualiser les messages
-
-@app.route('/transaction', methods=['GET', 'POST'])
-def transaction():
-    if request.method == 'POST':
-        flash("Transaction effectuée")
-        return render_template('transaction.html')
-    else:
-        # Traitement spécifique pour la méthode GET
-        # Peut-être rediriger vers une autre page ou effectuer d'autres actions
-        return render_template('transaction.html')  # Ou rediriger vers une autre page
-
-
+        
 
 if __name__ == '__main__':
     app.run(debug=True)

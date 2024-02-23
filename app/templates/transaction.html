@@ -5,7 +5,8 @@
         <link href="../static/css/style.css" rel="stylesheet">
         <!--Barre de navigation-->
         <div class="toolbar">
-            <a class="toolbarr" href="transaction">Accueil</a> 
+            <a class="toolbarr" href="transaction">Accueil MoneyShield</a>
+            <a class="toolbarll">Bienvenue {{ session['utilisateur'] }}</a>
             <a class="toolbarll" href="/">Logout</a>
         </div>
     </head>
@@ -31,7 +32,13 @@
                 </ul>
                 <div class="button">
                     <button type="submit">Valider</button>
-                  </div>
+                </div>
+                <!--Affichage des messages flash-->
+                {% with messages = get_flashed_messages() %}
+                    {% for message in messages %}
+                        <div class="flash-message">{{ message }}</div>
+                    {% endfor %}
+                {% endwith %}
             </form>
         </div>
     </body>
