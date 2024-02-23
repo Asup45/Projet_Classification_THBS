@@ -236,6 +236,14 @@ def prediction():
 @app.route('/transaction', methods=['GET', 'POST'])
 def transaction():
     if request.method == 'POST':
+        data = request.form
+        try:
+            conn = msql.connect(**config_bdd)
+            cursor = conn.cursor()
+        except Error as err:
+            print(f"Erreur : {err}")
+        return False
+    
         flash("Transaction effectuée")
         return render_template('transaction.html')
     else:
