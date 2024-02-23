@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Lien vers la feuille de style-->
+        <link href="../static/css/style.css" rel="stylesheet">
+        <!--Barre de navigation-->
+        <div class="toolbar">
+            <a class="toolbarr" href="transaction">Accueil</a> 
+            <a class="toolbarll" href="/">Logout</a>
+        </div>
+    </head>
+    <!--Séparation entre la barre de navigation et la page-->
+    <hr>
+    <body>
+        <!--Division regroupant la séparation (permet d'ajouter du style plus facilement)-->
+        <div class="centered-container">
+            <!--Formulaire permentant de choisir le type de paiement, le montant et le nom du destinataire-->
+            <form class="transactions" id="cardviewtransaction" method="post">
+                <ul>
+                    <h3 class="transaction">Faites une transaction</h3>
+                    <select name="type" id="typepaiement" required>
+                        <option value="">Choisissez une option</option>
+                        <option value="1">CASH_IN</option>
+                        <option value="2">CASH_OUT</option>
+                        <option value="3">DEBIT</option>
+                        <option value="4">PAYMENT</option>
+                        <option value="5">TRANSFER</option>
+                    </select>                    
+                    <input type="float" id="amount" name="amount" placeholder="Montant" required/>
+                    <input type="float" id="nomdest" name="nameDest" placeholder="Nom Destinataire" required/>
+                    <input type="float" id="nomdest" name="oldbalanceOrg" placeholder="Balance destinataire" required/>
+                    <input type="float" id="nomdest" name="newbalanceDest" placeholder="Balance destinataire après transaction" required/>
+                    <input type="float" id="nomdest" name="nameOrig" placeholder="Nom de L'origine" required/>                    
+                    <input type="float" id="nomdest" name="oldbalanceOrg" placeholder="Balance de L'origine" required/>
+                    <input type="float" id="nomdest" name="newblanaceOrig" placeholder="Balance après transaction" required/>
+
+                </ul>
+                <div class="button">
+                    <button type="submit">Valider</button>
+                  </div>
+            </form>
+        </div>
+    </body>
+</html>
